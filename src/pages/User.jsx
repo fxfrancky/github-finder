@@ -40,7 +40,7 @@ function User() {
       dispatch({ type: "GET_REPOS", payload: repos });
     };
 
-    // getReposData();
+    getReposData();
 
     // getGitUser(params.login);
     // getUserRepos(params.login);
