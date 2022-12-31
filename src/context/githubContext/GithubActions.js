@@ -15,17 +15,17 @@ export const searchGithubUsers = async (text) => {
   });
 
   //Axios version on getUsers
-  const response = await githubAxios.get(`/search/users?${params}`);
-  // const response = await fetch(`${GITHUB_URL}/search/users?${params}`, {
-  //   headers: {
-  //     "Content-Type": "application-json",
-  //     Authorization: `token ${GITHUB_TOKEN}`,
-  //   },
-  // });
-  // const { items } = await response.json();
+  // const response = await githubAxios.get(`/search/users?${params}`);
+  const response = await fetch(`${GITHUB_URL}/search/users?${params}`, {
+    headers: {
+      "Content-Type": "application-json",
+      Authorization: `token ${GITHUB_TOKEN}`,
+    },
+  });
+  const { items } = await response.json();
 
-  // return items;
-  return response.data.items;
+  return items;
+  // return response.data.items;
 };
 
 // //Get a Single User
