@@ -1,6 +1,6 @@
 import axios from "axios";
 const GITHUB_URL = "https://api.github.com";
-const GITHUB_TOKEN = "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";
+
 const githubAxios = axios.create({
   baseURL: GITHUB_URL,
   // headers: { Authorization: `token ${GITHUB_TOKEN}` },
@@ -61,7 +61,7 @@ export const getUserRepos = async (login) => {
   const response = await fetch(`${GITHUB_URL}/users/${login}/repos?${params}`, {
     headers: {
       "Content-Type": "application-json",
-      Authorization: `token ${GITHUB_TOKEN}`,
+      // Authorization: `token ${GITHUB_TOKEN}`,
     },
   });
   const data = await response.json();
