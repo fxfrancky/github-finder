@@ -1,10 +1,10 @@
 import axios from "axios";
 const GITHUB_URL = "https://api.github.com";
-const GITHUB_TOKEN = "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";
+// const GITHUB_TOKEN = "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";
 
 const githubAxios = axios.create({
   baseURL: GITHUB_URL,
-  headers: { Authorization: `token ${GITHUB_TOKEN}` },
+  // headers: { Authorization: `token ${GITHUB_TOKEN}` },
 });
 
 //Get a List Of Users
@@ -19,7 +19,7 @@ export const searchGithubUsers = async (text) => {
   const response = await fetch(`${GITHUB_URL}/search/users?${params}`, {
     headers: {
       "Content-Type": "application-json",
-      Authorization: `token ${GITHUB_TOKEN}`,
+      // Authorization: `token ${GITHUB_TOKEN}`,
     },
   });
   const { items } = await response.json();
@@ -33,7 +33,7 @@ export const getGitUser = async (login) => {
   const response = await fetch(`${GITHUB_URL}/users/${login}`, {
     headers: {
       "Content-Type": "application-json",
-      Authorization: `token ${GITHUB_TOKEN}`,
+      // Authorization: `token ${GITHUB_TOKEN}`,
     },
   });
 
@@ -62,7 +62,7 @@ export const getUserRepos = async (login) => {
   const response = await fetch(`${GITHUB_URL}/users/${login}/repos?${params}`, {
     headers: {
       "Content-Type": "application-json",
-      Authorization: `token ${GITHUB_TOKEN}`,
+      // Authorization: `token ${GITHUB_TOKEN}`,
     },
   });
   const data = await response.json();
