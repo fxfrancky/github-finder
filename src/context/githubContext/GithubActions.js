@@ -1,6 +1,6 @@
 import axios from "axios";
-const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
-const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
+const GITHUB_URL = "https://api.github.com";
+const GITHUB_TOKEN = "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";
 
 const githubAxios = axios.create({
   baseURL: GITHUB_URL,
@@ -29,61 +29,61 @@ export const searchGithubUsers = async (text) => {
 };
 
 // //Get a Single User
-// export const getGitUser = async (login) => {
-//   const response = await fetch(`${GITHUB_URL}/users/${login}`, {
-//     headers: {
-//       "Content-Type": "application-json",
-//       Authorization: `token ${GITHUB_TOKEN}`,
-//     },
-//   });
+export const getGitUser = async (login) => {
+  const response = await fetch(`${GITHUB_URL}/users/${login}`, {
+    headers: {
+      "Content-Type": "application-json",
+      Authorization: `token ${GITHUB_TOKEN}`,
+    },
+  });
 
-//   // If the user is not found, redirect
-//   if (response.status === 404) {
-//     window.location = "/notfound";
-//   } else {
-//     const data = await response.json();
-//     return data;
+  // If the user is not found, redirect
+  if (response.status === 404) {
+    window.location = "/notfound";
+  } else {
+    const data = await response.json();
+    return data;
 
-//     // dispatch({
-//     //   type: "GET_USER",
-//     //   payload: data,
-//     // });
-//   }
-// };
+    // dispatch({
+    //   type: "GET_USER",
+    //   payload: data,
+    // });
+  }
+};
 
-// //Get user the latests repos
-// export const getUserRepos = async (login) => {
-//   // URL Parameter
-//   const params = new URLSearchParams({
-//     sort: "created",
-//     per_page: 10,
-//   });
-
-//   const response = await fetch(`${GITHUB_URL}/users/${login}/repos?${params}`, {
-//     headers: {
-//       "Content-Type": "application-json",
-//       Authorization: `token ${GITHUB_TOKEN}`,
-//     },
-//   });
-//   const data = await response.json();
-//   return data;
-//   // setUsers(data);
-//   // setLoading(false);
-//   // dispatch({
-//   //   type: "GET_REPOS",
-//   //   payload: data,
-//   // });
-// };
-
-export const getUserAndRepos = async (login) => {
-  //   // URL Parameter
+//Get user the latests repos
+export const getUserRepos = async (login) => {
+  // URL Parameter
   const params = new URLSearchParams({
     sort: "created",
     per_page: 10,
   });
-  const [user, repos] = await Promise.all([
-    githubAxios.get(`/users/${login}`),
-    githubAxios.get(`/users/${login}/repos`),
-  ]);
-  return { user: user.data, repos: repos.data };
+
+  const response = await fetch(`${GITHUB_URL}/users/${login}/repos?${params}`, {
+    headers: {
+      "Content-Type": "application-json",
+      Authorization: `token ${GITHUB_TOKEN}`,
+    },
+  });
+  const data = await response.json();
+  return data;
+  // setUsers(data);
+  // setLoading(false);
+  // dispatch({
+  //   type: "GET_REPOS",
+  //   payload: data,
+  // });
 };
+
+// export const getUserAndRepos = async (login) => {
+//   //   // URL Parameter
+//   const params = new URLSearchParams({
+//     sort: "created",
+//     per_page: 10,
+//   });
+//   const [user, repos] = await Promise.all([
+//     githubAxios.get(`/users/${login}`),
+//     githubAxios.get(`/users/${login}/repos`),
+//   ]);
+//   return { user: user.data, repos: repos.data };
+// };

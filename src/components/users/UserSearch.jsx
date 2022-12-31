@@ -23,6 +23,7 @@ function UserSearch() {
     } else {
       dispatch({ type: "SET_LOADING" });
       const users = await searchGithubUsers(text);
+      console.log(users);
       dispatch({ type: "GET_USERS", payload: users });
       setText(""); // Clear the field after search
     }
