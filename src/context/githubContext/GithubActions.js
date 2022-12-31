@@ -83,7 +83,7 @@ export const getUserAndRepos = async (login) => {
   });
   const [user, repos] = await Promise.all([
     githubAxios.get(`/users/${login}`),
-    githubAxios.get(`/users/${login}/repos?${params}`),
+    githubAxios.get(`/users/${login}/repos`),
   ]);
   return { user: user.data, repos: repos.data };
 };
